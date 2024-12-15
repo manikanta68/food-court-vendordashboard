@@ -1,0 +1,36 @@
+.header{
+    width: 95%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+    padding: 10px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+}
+.vendor-heading{
+    font-size: 19px;
+}
+@media screen and (min-width: 576px) {
+    .vendor-heading{
+        font-size: 24px;
+    }
+}
+.vendor-head-description{
+    font-size: 15px;
+    color: rgb(122, 116, 116);
+}
+@media screen and (min-width: 576px) {
+    .vendor-head-description{
+        font-size: 18px;
+    
+    }
+}
+
+.vendor-profile{
+    margin-left: 10px;
+}
+.profile-pic{
+    height: 40px;
+    width: 40px;
+}
