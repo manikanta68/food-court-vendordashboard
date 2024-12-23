@@ -173,6 +173,7 @@ const Home = () => {
 
     const renderSuccessView = () => {
         const { data } = apiResponse
+        const reversedOrders = data.reverse();
 
 
         const completedOrdersArray = data.filter((each) => each.status === "Completed")
@@ -239,7 +240,7 @@ const Home = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {data.map((each) => <tr key={each.id}>
+                            {reversedOrders.map((each) => <tr key={each.id}>
                                 <td>{each.orderId}</td>
                                 <td className="td-customarname">{each.name}</td>
                                 <td>{each.datetime}</td>
