@@ -29,7 +29,6 @@ const Home = () => {
     })
     const [search,setSearch] = useState("")
     const [filter,setFilter] = useState("")
-    const [applyFilters,setApplyFilters] = useState(false)
     const [popupOpen, setPopupOpen] = useState(false);
     const [order, setOrder] = useState(null);
 
@@ -41,10 +40,8 @@ const Home = () => {
         }))
         const gettingData = async () => {
             const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/orders/?search=${search}&filter=${filter}`)
-            
-            const data = await response.json()
             if (response.ok === true) {
-                console.log(data)
+                const data = await response.json()
                 setApiResponse({
                     status: apiResponseConstants.success,
                     data: data,
@@ -57,9 +54,8 @@ const Home = () => {
         }
 
         gettingData()
-        setApplyFilters(false)
     
-    }, [applyFilters])
+    }, [])
 
 
     const handleOpenPopup = (sampleOrder) => {
@@ -105,7 +101,6 @@ const Home = () => {
                     }
                     return each
                 })
-                console.log(updateData)
                 setApiResponse({
                     status: apiResponseConstants.success,
                     data: updateData,
@@ -173,19 +168,11 @@ const Home = () => {
 
     const renderSuccessView = () => {
         const { data } = apiResponse
-        const reversedOrders = data.reverse();
-
-
+        const reversedOrders = data.filter((each) => filter === "" || each.status === filter).reverse();
+        const filteredOrders = reversedOrders.filter((each) => each.name.toLowerCase().includes(search.trim().toLowerCase()))
         const completedOrdersArray = data.filter((each) => each.status === "Completed")
-        let completedOrdersCound = 0; 
-        let incompletdOrders = 0;
-        for(let each of data){
-            if(each.status==="Completed"){
-                completedOrdersCound += 1;
-            }else if(each.status === "Inprogress"){
-                incompletdOrders += 1;
-            }
-        }
+        const IncompletedOrdersArray = data.filter((each) => each.status === "Inprogress")
+        
         return <div className="home-success-container">
             <ul className="order-cards-ul-list">
                 <li className="order-li-card">
@@ -199,14 +186,14 @@ const Home = () => {
                     <FaRegClock className="status-icons"  color="orange" />
                     <div>
                         <p>Perding Orders</p>
-                        <p className="order-count">{incompletdOrders}</p>
+                        <p className="order-count">{IncompletedOrdersArray.length}</p>
                     </div>
                 </li>
                 <li className="order-li-card">
                     <GrStatusGood className="status-icons"  color="green" />
                     <div>
                         <p>Completed Orders</p>
-                        <p className="order-count">{completedOrdersCound}</p>
+                        <p className="order-count">{completedOrdersArray.length}</p>
                     </div>
                 </li>
             </ul>
@@ -214,15 +201,18 @@ const Home = () => {
                 <div className="orders-header-container">
                     <p className="recent-order-heading">Recent Orders</p>
                     <div className="filters-and-search-options-container">
-                        <select value={filter} onChange={(event) => setFilter(event.target.value)} className="status-options">
-                            <option>All Orders</option>
-                            <option>Inprogress</option>
-                            <option>Complete</option>
-                            <option>Cancel</option>
+                        <select value={filter} onChange={(event) => {
+                            setFilter(event.target.value)
+                            }} className="status-options">
+                            <option value="">All Orders</option>
+                            <option value="Inprogress">Inprogress</option>
+                            <option value="Completed">Completed</option>
+                            <option value="Cancelled">Cancelled</option>
                         </select>
                         <div className="search-container">
-                            <input value={search} onChange={(event) => setSearch(event.target.value)} className="status-search" placeholder="search orders" type="search" />
-                            <button type="button" onClick={() => setApplyFilters(true)} className="search-button">
+                            <input value={search} onChange={(event) => setSearch(event.target.value)} className="status-search" placeholder="search customer name" type="text" />
+                            <button type="button" onClick={() => {
+                            }} className="search-button">
                                 <CiSearch size={20} />
                             </button>
                         </div>
@@ -240,7 +230,7 @@ const Home = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {reversedOrders.map((each) => <tr key={each.id}>
+                            {filteredOrders.map((each) => <tr key={each.id}>
                                 <td>{each.orderId}</td>
                                 <td className="td-customarname">{each.name}</td>
                                 <td>{each.datetime}</td>
