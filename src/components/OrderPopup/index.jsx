@@ -18,7 +18,7 @@ const OrderPopup = ({ orderDetails, onAction, onClose }) => {
                 <div className="order-info">
                     <p><strong>Order ID:</strong> {orderDetails.orderId}</p>
                     <p><strong>Customer Name:</strong> {orderDetails.name}</p>
-                    <p><strong>Email:</strong> {orderDetails.email}</p>
+                    <p><strong>Email:</strong> {orderDetails.email.slice(0, 3) + "*".repeat(orderDetails.email.length - 3)}</p>
                     <p><strong>Order Items:</strong></p>
                     <ul className='ordered-items-ul'>
                         {orderDetails.orderDetails.map(each => <li key={each.id} className='ordered-listitem-li'><div><p>{each.name} * <strong>{each.quantity}</strong></p> <p className='instructions'> * {each.instructions}</p></div> <p>{each.price*each.quantity}</p></li>)}
