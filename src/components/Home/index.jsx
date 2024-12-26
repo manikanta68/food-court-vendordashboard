@@ -6,7 +6,7 @@ import { CiSearch } from "react-icons/ci";
 import { MdOutlineNotifications } from "react-icons/md";
 import { parse, differenceInMinutes } from 'date-fns';
 
-
+import Cookies from "js-cookie";
 import "./index.css"
 import { useEffect, useState } from "react";
 import { Puff } from 'react-loader-spinner'
