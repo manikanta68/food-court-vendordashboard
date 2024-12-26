@@ -1,5 +1,6 @@
-import  { useState } from "react";
+import  { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 import "./index.css";
 
 const Login = () => {
@@ -9,6 +10,13 @@ const Login = () => {
   });
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = Cookies.get("jwtToken"); 
+        if (token) {
+          navigate("/");
+        }
+  },[])
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -29,10 +37,10 @@ const Login = () => {
       if (response.ok) {
         const data = await response.json();
         setMessage("Login successful!");
-        // Store JWT token or navigate
         console.log(data)
-        localStorage.setItem("jwtToken", data.jwtToken);
-        // Navigate to a different page if needed
+        Cookies.set("jwtToken", data.jwtToken, { expires: 1, secure: true });
+        Cookies.set("username", formData.username, { expires: 1, secure: true });
+        navigate("/")
       } else {
         const errorData = await response.text();
         setMessage(errorData);

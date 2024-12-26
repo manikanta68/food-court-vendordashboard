@@ -59,8 +59,14 @@ const Home = () => {
 
 
     const handleOpenPopup = (sampleOrder) => {
-        setOrder(sampleOrder);
-        setPopupOpen(true);
+        const token = Cookies.get("jwtToken"); 
+        if (token) {
+            setOrder(sampleOrder);
+            setPopupOpen(true);
+        } else {
+          navigate("/login");
+        }
+        
     };
 
     const handleClosePopup = () => {

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./index.css";
 
 const Register = () => {
@@ -9,6 +10,7 @@ const Register = () => {
     gender: "",
     location: "",
   });
+  const navigate = useNavigate();
 
   const [message, setMessage] = useState("");
 
@@ -31,6 +33,7 @@ const Register = () => {
       if (response.ok) {
         const data = await response.text();
         setMessage(data);
+        navigate("/login")
       } else if (response.status === 400) {
         const errorData = await response.text();
         setMessage(errorData);
