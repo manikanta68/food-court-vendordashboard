@@ -32,6 +32,9 @@
     display: flex;
     align-items: center;
     gap: 10px;
+    border: none;
+    outline: none;
+    background-color: transparent;
 }
 .profile-pic{
     height: 50px;
