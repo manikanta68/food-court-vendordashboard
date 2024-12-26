@@ -78,11 +78,14 @@ const Home = () => {
     const updateOrderStatus = async (action) => {
         const orderId = order.orderId
         const {data} = apiResponse
+        const jwtToken = Cookies.get("jwtToken");
+
         try {
             const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/update-status`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${jwtToken}`,
                 },
                 body: JSON.stringify({ orderId, action }),
             });
