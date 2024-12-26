@@ -1,26 +1,45 @@
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
 .popup-overlay {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.6);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1000;
 }
 
+
 .popup-content {
-    background: #fff;
-    border-radius: 10px;
-    padding: 20px;
-    width:95%;
+    background: linear-gradient(145deg, #ffffff, #e6e6e6);
+    border-radius: 15px;
+    padding: 25px;
+    width: 95%;
     max-width: 500px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
     position: relative;
+    text-align: left;
+    color: #333;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+.popup-content:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Close Button */
 .close-btn {
     position: absolute;
     top: 10px;
@@ -28,19 +47,67 @@
     background: none;
     border: none;
     font-size: 1.5rem;
+    color: #333;
     cursor: pointer;
+    transition: color 0.3s ease;
 }
 
-.order-info {
-    margin: 20px 0;
-    text-align: left;
+.close-btn:hover {
+    color: #f44336;
 }
 
+/* Order Info Section */
 .order-info p {
     margin: 10px 0;
-    font-size: 1.1rem;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #444;
+    line-height: 1.5;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
+.order-info strong {
+    font-weight: 600;
+    color: #333;
+}
+
+/* Ordered Items List */
+.ordered-items-ul {
+    list-style-type: none;
+    max-height: 300px;
+    background-color: rgba(240, 248, 255, 0.7);
+    padding: 8px;
+    border-radius: 8px;
+    overflow-y: scroll;
+    margin-top: 10px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 0.95rem;
+}
+
+.ordered-items-ul::-webkit-scrollbar {
+    display: none;
+}
+
+.ordered-listitem-li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid #ccc;
+    font-size: 0.95rem;
+    color: #555;
+}
+
+.ordered-listitem-li:last-child {
+    border: none;
+}
+
+.instructions {
+    color: rgb(245, 74, 74);
+    font-style: italic;
+}
+
+/* Actions Section */
 .actions {
     display: flex;
     justify-content: space-around;
@@ -48,14 +115,14 @@
 }
 
 .action-btn {
-    padding: 9px;
+    padding: 10px 15px;
     border: none;
-    border-radius: 5px;
-    font-size: 0.9rem;
+    border-radius: 6px;
+    font-size: 0.95rem;
     cursor: pointer;
     color: #fff;
-    transition: background-color 0.3s ease;
-    margin-right: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .action-btn.completed {
@@ -64,6 +131,7 @@
 
 .action-btn.completed:hover {
     background-color: #218838;
+    transform: translateY(-2px);
 }
 
 .action-btn.cancelled {
@@ -73,33 +141,21 @@
 
 .action-btn.cancelled:hover {
     background-color: #e0a800;
+    transform: translateY(-2px);
 }
-.ordered-items-ul{
-    list-style-type: none;
-    max-height: 300px;
-    background-color: rgb(217, 231, 231);
-    padding: 6px;
-    border-radius: 4px;
-    overflow-y: scroll;
-}
-.ordered-items-ul::-webkit-scrollbar {
-    display: none; /* For WebKit-based browsers (Chrome, Safari, Edge) */
-}
-.ordered-listitem-li{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-style: solid;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    border-width: 1px;
-    border-color: #7e7979;
 
-}
-.ordered-listitem-li:last-child{
-    border: none;
-}
-.instructions{
-    color: rgb(245, 74, 74);
+/* Responsive Styles */
+@media screen and (min-width: 768px) {
+    .popup-content {
+        padding: 30px;
+    }
+
+    .order-info p {
+        font-size: 1.1rem;
+    }
+
+    .action-btn {
+        padding: 12px 20px;
+        font-size: 1rem;
+    }
 }
