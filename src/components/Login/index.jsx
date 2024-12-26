@@ -18,7 +18,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://your-api-endpoint/login", {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -30,6 +30,7 @@ const Login = () => {
         const data = await response.json();
         setMessage("Login successful!");
         // Store JWT token or navigate
+        console.log(data)
         localStorage.setItem("jwtToken", data.jwtToken);
         // Navigate to a different page if needed
       } else {
