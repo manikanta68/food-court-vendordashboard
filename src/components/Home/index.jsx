@@ -11,7 +11,7 @@ import "./index.css"
 import { useEffect, useState } from "react";
 import { Puff } from 'react-loader-spinner'
 import OrderPopup from "../OrderPopup";
-
+import { useNavigate } from "react-router-dom";
 
 const apiResponseConstants = {
     initial: "INITIAL",
@@ -31,6 +31,7 @@ const Home = () => {
     const [filter,setFilter] = useState("")
     const [popupOpen, setPopupOpen] = useState(false);
     const [order, setOrder] = useState(null);
+    const navigate = useNavigate();
 
 
     useEffect(() => {
@@ -60,6 +61,7 @@ const Home = () => {
 
     const handleOpenPopup = (sampleOrder) => {
         const token = Cookies.get("jwtToken"); 
+        console.log(token)
         if (token) {
             setOrder(sampleOrder);
             setPopupOpen(true);
