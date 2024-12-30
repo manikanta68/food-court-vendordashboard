@@ -39,7 +39,7 @@ body {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
 }
 
-/* Close Button */
+
 .close-btn {
     position: absolute;
     top: 10px;
@@ -56,7 +56,7 @@ body {
     color: #f44336;
 }
 
-/* Order Info Section */
+
 .order-info p {
     margin: 10px 0;
     font-size: 1rem;
@@ -71,7 +71,7 @@ body {
     color: #333;
 }
 
-/* Ordered Items List */
+
 .ordered-items-ul {
     list-style-type: none;
     max-height: 300px;
@@ -107,7 +107,7 @@ body {
     font-style: italic;
 }
 
-/* Actions Section */
+
 .actions {
     display: flex;
     justify-content: space-around;
@@ -144,7 +144,7 @@ body {
     transform: translateY(-2px);
 }
 
-/* Responsive Styles */
+
 @media screen and (min-width: 768px) {
     .popup-content {
         padding: 30px;

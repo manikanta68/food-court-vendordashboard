@@ -5,7 +5,6 @@ import "./index.css"
 const Header = () => {
     const navigate = useNavigate();
     const username = Cookies.get("username")
-    console.log("uname", username)
     const handleProfileClick = () => {
         const token = Cookies.get("jwtToken"); 
         if (token) {

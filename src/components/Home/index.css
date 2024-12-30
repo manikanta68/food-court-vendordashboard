@@ -87,7 +87,6 @@
     }
 }
 
-/* recent-orders-container */
 
 .recent-orders-container{
     width: 100%;
@@ -231,7 +230,7 @@ tr{
     color: blue;
 }
 
-/* notifications-container */
+
 
 .notifications-container{
     margin-top: 15px;

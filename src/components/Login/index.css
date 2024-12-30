@@ -105,7 +105,7 @@
     color: #2ecc71;
 }
 
-/* Responsive Styles */
+
 @media (max-width: 768px) {
     .login-container {
         padding: 20px;
